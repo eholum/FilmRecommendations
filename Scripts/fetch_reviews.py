@@ -49,9 +49,9 @@ input_file = args[1]
 output_file = args[2]
 
 # Error file for movies
-error_file = None
+pickle_file = None
 if (len(args) >= 4):
-    output_file = args[3]
+    pickle_file = args[3]
     
     
 errored_lines = []
@@ -317,6 +317,10 @@ for mid in movies:
     count += 1
     if (count % 20 == 1):
         print("Processed %d movies..." % count)
+        
+    if (count % 3 == 1):
+        f = open("recent_reviews.pickle", 'wb')
+        pickle.dump(recent_reviews, f)
         
 print(errored_lines)
 
