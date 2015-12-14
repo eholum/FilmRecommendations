@@ -44,7 +44,7 @@ with open(reviews_file, newline='\n') as f:
 
 f = open(output_file, 'w')
 f.write('reviewer\t')
-f.write('\t'.join([titles[i] for i in sorted(mids)]))
+f.write('\t'.join(["%d:%s" % (i, titles[i]) for i in sorted(mids)]))
 f.write('\n')
 
 for name in reviews:
