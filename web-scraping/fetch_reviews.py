@@ -56,7 +56,6 @@ if (len(args) >= 4):
     
 errored_lines = []
 
-
 #####
 #
 # Load all data into a movies dictionary keyed by movie id.
@@ -64,13 +63,19 @@ errored_lines = []
 #####
 
 def split_title(title):
+    print(title)
     title = title.strip()
     return [title[0:-7], int(title[-5:-1])]
 
 print("Loading file...")
 
 lines = []
-for line in csv.reader(open(input_file, newline=''), delimiter=',', quotechar='\"'):
+for line in csv.reader(open(input_file, newline=''), delimiter=','):
+    if len(line) == 4:
+        titleyear = ','.join(line[1:3])
+        line[1] = titleyear.replace('"','')
+        del(line[2])
+            
     lines.append(line)
     
 movies = {}
